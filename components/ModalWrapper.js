@@ -1,9 +1,9 @@
 import styles from '../styles/Modal.module.css';
 
-export default function ModalWrapper({ children, onClose }) {
+export default function ModalWrapper({ children }) {
   return (
-    <div className={styles.overlay} onClick={onClose}>
-      <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
+    <div className={styles.overlay} >
+      <div className={styles.modal}>
         {children}
       </div>
     </div>

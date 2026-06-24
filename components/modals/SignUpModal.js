@@ -9,14 +9,30 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
 export default function SignUpModal() {
   const dispatch = useDispatch();
-  const [firstname, setFirstname] = useState('');
+  const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleRegister = () => {
-    console.log(username, password);
-    dispatch(closeSignUp());
+  const handleRegister = async () => {
+      const response = await fetch('http://localhost:3000/api/users/signup', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+        body: JSON.stringify({
+          username,
+          email,
+          password,
+        }),
+      });
+      const data = await response.json();
+      if (data.result) {
+        console.log('Utilisateur créé');
+        console.log(data.token);
+        dispatch(closeSignUp());
+      }      
   };
+  
 
   return (
     <ModalWrapper onClose={() => dispatch(closeSignUp())}>
@@ -27,16 +43,15 @@ export default function SignUpModal() {
       
       <input
         className={styles.input}
-        placeholder="Firstname"
+        placeholder="Username"
         onChange={(e) => setUsername(e.target.value)}
       />
 
       <input
         className={styles.input}
-        placeholder="Username"
-        onChange={(e) => setUsername(e.target.value)}
+        placeholder="Email"
+        onChange={(e) => setEmail(e.target.value)}
       />
-
       <input
         className={styles.input}
         type="password"

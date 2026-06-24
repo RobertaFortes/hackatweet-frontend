@@ -10,12 +10,26 @@ import Button from '../ui/Button.js'
 
 export default function SignInModal() {
   const dispatch = useDispatch();
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = () => {
-    console.log(username, password);
-    dispatch(closeSignIn());
+  const handleLogin = async () => {
+    const response = await fetch('http://localhost:3000/api/users/signin', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    });
+    const data = await response.json();
+    if (data.result) {
+      console.log('Utilisateur connecté');
+      console.log(data.token);
+      dispatch(closeSignIn());
+    }
   };
 
   return (
@@ -28,8 +42,8 @@ export default function SignInModal() {
 
       <input
         className={styles.input}
-        placeholder="Username"
-        onChange={(e) => setUsername(e.target.value)}
+        placeholder="Email"
+        onChange={(e) => setEmail(e.target.value)}
       />
 
       <input
@@ -39,9 +53,7 @@ export default function SignInModal() {
         onChange={(e) => setPassword(e.target.value)}
       />
       <Button onClick={handleLogin} title="Sign in" backgroundColor ='#fff' backgroundColorHover ='#fff' borderHover ='2px solid #fff' textColor='#000' textColorHover='#000'/>
-      {/* <button className={styles.button} onClick={handleLogin}>
-        Sign In
-      </button> */}
+ 
     </ModalWrapper>
   );
 }

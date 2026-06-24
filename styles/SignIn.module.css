@@ -24,5 +24,10 @@
   transform: scale(-1, -1);
 }
 .closeModal {
-    color: white;
+  color: white;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 30px;
+  cursor: pointer;
 }
