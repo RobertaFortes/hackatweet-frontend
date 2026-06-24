@@ -1,12 +1,11 @@
-import styles from '../../styles/Login.module.css';
+import { faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {faTwitter } from "@fortawesome/free-brands-svg-icons";
-import Button from '../ui/Button.js'
-import ButtonTrans from '../ui/ButtonTrans.js'
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { openSignIn, openSignUp } from '../../reducers/modal';
+import styles from '../../styles/Login.module.css';
 import SignInModal from '../modals/SignInModal';
 import SignUpModal from '../modals/SignUpModal';
-import { openSignIn, openSignUp } from '../../reducers/modal';
+import Button from '../ui/Button.js';
 
 function Login() {
   const dispatch = useDispatch();
@@ -33,7 +32,7 @@ function Login() {
           <h2>Join Hackatweet today.</h2>
           <Button onClick={() => dispatch(openSignUp())} title="Sign up" />
           <p>Already have an account?</p>
-           <ButtonTrans  onClick={() => dispatch(openSignIn())} title='Sign in' backgroundColorHover='#212020' border = '1px solid #fff'/>
+           <Button  onClick={() => dispatch(openSignIn())} title='Sign in' variant='buttonTrans' />
             {modal.signInOpen && <SignInModal />}
             {modal.signUpOpen && <SignUpModal />}
         </div>

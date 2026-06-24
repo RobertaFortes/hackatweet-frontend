@@ -1,15 +1,22 @@
-.button{
+.default {
     width: 240px;
     height: 40px;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.button{
     border: none;
     border-radius: 25px;
     background-color: #1d9bf0;
     color: white;
-    font-size: 20px;
-    font-weight: bold;
-    cursor: pointer;
     margin-bottom: 20px;
     transition: 1s;
+}
+.button:hover {
+    background-color: #176fab;
+    border: 2px solid #1d9bf0;
+    color: #fff;
 }
 
 .counterBtnTrans{
@@ -19,4 +26,14 @@
     font-weight: 600;
     cursor: pointer;
     transition-duration: 1s;
+}
+
+.buttonTrans{
+    border: 1px solid #fff;
+    color: #1d9bf0;
+}
+
+.buttonTrans:hover {
+    opacity: .3;
+    background-color: #212020;
 }
