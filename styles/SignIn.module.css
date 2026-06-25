@@ -8,15 +8,6 @@
   color: white;
 }
 
-.button {
-  width: 40%;
-  padding: 12px;
-  background: #1d9bf0;
-  color: white;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-}
 .iconTwitter {
   font-size: 40px;
   margin-top: 35px;
@@ -25,4 +16,13 @@
 }
 .closeModal {
     color: white;
+    align-self: flex-start;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.error {
+    color: #e0245e;
+    font-size: 14px;
+    margin: 0;
 }

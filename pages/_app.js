@@ -1,5 +1,6 @@
 import { Provider } from 'react-redux';
-import store from '../store';
+import { PersistGate } from 'redux-persist/integration/react';
+import store, { persistor } from '../store';
 import '../styles/globals.css';
 import Head from 'next/head';
 
@@ -10,7 +11,9 @@ function App({ Component, pageProps }) {
         <title>Next.js App</title>
       </Head>
       <Provider store={store}>
-        <Component {...pageProps} />
+        <PersistGate loading={null} persistor={persistor}>
+          <Component {...pageProps} />
+        </PersistGate>
       </Provider>
 
     </>
