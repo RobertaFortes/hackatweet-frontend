@@ -31,7 +31,7 @@ function Login() {
           <h2>Join Hackatweet today.</h2>
           <Button onClick={() => dispatch(openAuth('signup'))} title="Sign up" />
           <p>Already have an account?</p>
-           <Button variant="transparent" onClick={() => dispatch(openAuth('signin'))} title='Sign in' backgroundColorHover='#212020' border='1px solid #fff'/>
+          <Button variant="transparent" onClick={() => dispatch(openAuth('signin'))} title="Sign in" />
             {authMode && <AuthModal mode={authMode} />}
         </div>
       </div>

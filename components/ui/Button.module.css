@@ -1,12 +1,48 @@
-.button{
-    width: 240px;
-    height: 40px;
-    border: none;
-    border-radius: 25px;
-    color: white;
-    font-size: 20px;
-    font-weight: bold;
-    cursor: pointer;
-    margin-bottom: 20px;
-    transition: 1s;
+.button {
+  width: 240px;
+  height: 40px;
+  border-radius: 25px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Primary action — solid blue */
+.solid {
+  background-color: #1d9bf0;
+  color: #fff;
+  border: none;
+}
+
+.solid:hover:not(:disabled) {
+  background-color: #176fab;
+}
+
+/* Outline action on dark backgrounds */
+.transparent {
+  background-color: transparent;
+  color: #1d9bf0;
+  border: 2px solid #fff;
+}
+
+.transparent:hover:not(:disabled) {
+  background-color: #212020;
+}
+
+/* Light action — white pill with dark text */
+.light {
+  background-color: #fff;
+  color: #000;
+  border: 2px solid #fff;
+}
+
+.light:hover:not(:disabled) {
+  background-color: #e6e6e6;
 }
