@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faHeart, faTrash, faUser } from '@fortawesome/free-solid-svg-icons';
 import { deleteTweet, toggleLike } from '../../services/tweets';
 import styles from '../../styles/Home.module.css';
 
@@ -53,7 +53,9 @@ export default function Tweet({ tweet, currentUsername, token, onDeleted }) {
 
   return (
     <div className={styles.tweet}>
-      <div className={styles.avatar} />
+      <div className={styles.avatar}>
+        <FontAwesomeIcon icon={faUser} className={styles.avatarIcon} />
+      </div>
       <div className={styles.tweetBody}>
         <div className={styles.tweetHeader}>
           <span className={styles.author}>{username}</span>

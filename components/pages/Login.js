@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faTwitter } from "@fortawesome/free-brands-svg-icons";
 import Button from '../ui/Button.js'
 import { useSelector, useDispatch } from 'react-redux';
-import AuthModal from '../modals/AuthModal';
+import AuthModal from '../modal/AuthModal';
 import { openAuth } from '../../reducers/modal';
 
 function Login() {
@@ -17,8 +17,6 @@ function Login() {
         <img
           src="/BG_twitter.png"
           alt="Background"
-          // width="100%"
-          // height="100%"
           className={styles.backgroundImage}
         />
       </div>
