@@ -14,7 +14,6 @@
   cursor: not-allowed;
 }
 
-/* Primary action — solid blue */
 .solid {
   background-color: #1d9bf0;
   color: #fff;
@@ -25,7 +24,6 @@
   background-color: #176fab;
 }
 
-/* Outline action on dark backgrounds */
 .transparent {
   background-color: transparent;
   color: #1d9bf0;
@@ -36,7 +34,6 @@
   background-color: #212020;
 }
 
-/* Light action — white pill with dark text */
 .light {
   background-color: #fff;
   color: #000;
