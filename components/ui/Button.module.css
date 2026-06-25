@@ -3,20 +3,10 @@
     height: 40px;
     border: none;
     border-radius: 25px;
-    background-color: #1d9bf0;
     color: white;
     font-size: 20px;
     font-weight: bold;
     cursor: pointer;
     margin-bottom: 20px;
     transition: 1s;
-}
-
-.counterBtnTrans{
-    background-color: transparent;
-    color: #fff;
-    font-size: 12px;
-    font-weight: 600;
-    cursor: pointer;
-    transition-duration: 1s;
 }

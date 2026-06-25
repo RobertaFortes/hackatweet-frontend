@@ -1,34 +1,24 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  signInOpen: false,
-  signUpOpen: false,
+  // null = fechado, 'signin' ou 'signup' = aberto no respectivo modo
+  authMode: null,
 };
 
 const modalSlice = createSlice({
   name: 'modal',
   initialState,
   reducers: {
-    openSignIn: (state) => {
-      state.signInOpen = true;
+    openAuth: (state, action) => {
+      // action.payload: 'signin' | 'signup'
+      state.authMode = action.payload;
     },
-    closeSignIn: (state) => {
-      state.signInOpen = false;
-    },
-    openSignUp: (state) => {
-      state.signUpOpen = true;
-    },
-    closeSignUp: (state) => {
-      state.signUpOpen = false;
+    closeAuth: (state) => {
+      state.authMode = null;
     },
   },
 });
 
-export const {
-  openSignIn,
-  closeSignIn,
-  openSignUp,
-  closeSignUp,
-} = modalSlice.actions;
+export const { openAuth, closeAuth } = modalSlice.actions;
 
 export default modalSlice.reducer;
