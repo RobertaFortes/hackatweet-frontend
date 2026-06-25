@@ -16,7 +16,7 @@
 }
 .closeModal {
     color: white;
-    align-self: flex-start;
+    align-self: flex-end;
     cursor: pointer;
     font-size: 20px;
 }
