@@ -34,7 +34,11 @@ function Home() {
   }
 
   const handleCreated = (tweet) => {
-    setTweets((prev) => [tweet, ...prev]);
+    const withAuthor = {
+      ...tweet,
+      author: tweet.author?.username ? tweet.author : { username },
+    };
+    setTweets((prev) => [withAuthor, ...prev]);
   };
 
   const handleDeleted = (id) => {
