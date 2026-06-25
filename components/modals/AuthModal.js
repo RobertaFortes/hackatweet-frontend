@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import Button from '../ui/Button.js';
+import { API_URL } from '../../config';
 
 export default function AuthModal({ mode }) {
   const dispatch = useDispatch();
@@ -26,7 +27,7 @@ export default function AuthModal({ mode }) {
       ? { username, email, password }
       : { email, password };
 
-    fetch(`http://localhost:3000/api/users/${endpoint}`, {
+    fetch(`${API_URL}/api/users/${endpoint}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body),
