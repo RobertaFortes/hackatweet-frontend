@@ -32,3 +32,9 @@ export function toggleLike(token, id) {
     headers: authHeaders(token),
   }).then((response) => response.json());
 }
+
+export function getTrends(token) {
+  return fetch(`${API_URL}/api/tweets/trends`, {
+    headers: authHeaders(token),
+  }).then((response) => response.json());
+}

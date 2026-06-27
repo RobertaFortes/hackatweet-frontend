@@ -92,11 +92,7 @@ export default function AuthModal({ mode }) {
       <Button
         onClick={handleSubmit}
         title={isSignup ? 'Sign up' : 'Sign in'}
-        backgroundColor="#fff"
-        backgroundColorHover="#fff"
-        borderHover="2px solid #fff"
-        textColor="#000"
-        textColorHover="#000"
+        variant="light"
       />
     </ModalWrapper>
   );

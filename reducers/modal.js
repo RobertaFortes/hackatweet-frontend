@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  // null = fechado, 'signin' ou 'signup' = aberto no respectivo modo
   authMode: null,
 };
 

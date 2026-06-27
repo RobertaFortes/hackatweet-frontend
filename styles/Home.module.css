@@ -1,18 +1,62 @@
 .layout {
   display: grid;
   grid-template-columns: 22% 56% 22%;
-  min-height: 100vh;
+  height: 100vh;
+  overflow: hidden;
   background: #141d26;
   color: #fff;
 }
 
 .sidebarLeft {
   border-right: 1px solid #38444d;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 20px;
 }
 
 .feed {
   border-right: 1px solid #38444d;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.feedHeader {
+  flex-shrink: 0;
+  padding: 0 20px;
+  border-bottom: 1px solid #38444d;
+  background: #141d26;
+}
+
+.tweetList {
+  flex: 1;
+  overflow-y: auto;
   padding: 0 20px 40px;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: #38444d transparent;
+}
+
+.tweetList::-webkit-scrollbar {
+  width: 8px;
+}
+
+.tweetList::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.tweetList::-webkit-scrollbar-thumb {
+  background: #38444d;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+.tweetList::-webkit-scrollbar-thumb:hover {
+  background: #4a5a68;
+  background-clip: padding-box;
 }
 
 .feedTitle {
@@ -35,9 +79,7 @@
 
 /* Composer */
 .composer {
-  border-bottom: 1px solid #38444d;
   padding-bottom: 16px;
-  margin-bottom: 16px;
 }
 
 .composerInput {
@@ -95,6 +137,51 @@
   height: 40px;
   border-radius: 50%;
   background: #1d9bf0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatarIcon {
+  color: #fff;
+  font-size: 20px;
+}
+
+/* User card (left sidebar) */
+.userCard {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.userNames {
+  display: flex;
+  flex-direction: column;
+  font-size: 15px;
+}
+
+.logoutBtn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: none;
+  border: none;
+  color: #8899a6;
+  cursor: pointer;
+  font-size: 15px;
+  font-family: inherit;
+  padding: 8px 0;
+  text-align: left;
+}
+
+.logoutBtn:hover {
+  color: #1d9bf0;
 }
 
 .tweetBody {

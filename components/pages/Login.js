@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faTwitter } from "@fortawesome/free-brands-svg-icons";
 import Button from '../ui/Button.js'
 import { useSelector, useDispatch } from 'react-redux';
-import AuthModal from '../modals/AuthModal';
+import AuthModal from '../modal/AuthModal';
 import { openAuth } from '../../reducers/modal';
 
 function Login() {
@@ -17,8 +17,6 @@ function Login() {
         <img
           src="/BG_twitter.png"
           alt="Background"
-          // width="100%"
-          // height="100%"
           className={styles.backgroundImage}
         />
       </div>
@@ -31,7 +29,7 @@ function Login() {
           <h2>Join Hackatweet today.</h2>
           <Button onClick={() => dispatch(openAuth('signup'))} title="Sign up" />
           <p>Already have an account?</p>
-           <Button variant="transparent" onClick={() => dispatch(openAuth('signin'))} title='Sign in' backgroundColorHover='#212020' border='1px solid #fff'/>
+          <Button variant="transparent" onClick={() => dispatch(openAuth('signin'))} title="Sign in" />
             {authMode && <AuthModal mode={authMode} />}
         </div>
       </div>

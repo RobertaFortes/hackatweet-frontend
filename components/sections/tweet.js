@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faHeart, faTrash, faUser } from '@fortawesome/free-solid-svg-icons';
 import { deleteTweet, toggleLike } from '../../services/tweets';
 import styles from '../../styles/Home.module.css';
 
@@ -16,7 +16,7 @@ function timeAgo(date) {
 }
 
 function renderContent(content) {
-  return content.split(/(#\w+)/g).map((part, i) =>
+  return content?.split(/(#\w+)/g).map((part, i) =>
     part.startsWith('#') ? (
       <span key={i} className={styles.hashtag}>
         {part}
@@ -29,9 +29,9 @@ function renderContent(content) {
 
 export default function Tweet({ tweet, currentUsername, token, onDeleted }) {
   const [liked, setLiked] = useState(false);
-  const [count, setCount] = useState(tweet.likes ? tweet.likes.length : 0);
+  const [count, setCount] = useState(tweet?.likes ? tweet?.likes.length : 0);
 
-  const username = tweet.author?.username ?? 'unknown';
+  const username = tweet?.author?.username ?? 'unknown';
   const isOwner = username === currentUsername;
 
   const handleLike = () => {
@@ -53,15 +53,17 @@ export default function Tweet({ tweet, currentUsername, token, onDeleted }) {
 
   return (
     <div className={styles.tweet}>
-      <div className={styles.avatar} />
+      <div className={styles.avatar}>
+        <FontAwesomeIcon icon={faUser} className={styles.avatarIcon} />
+      </div>
       <div className={styles.tweetBody}>
         <div className={styles.tweetHeader}>
           <span className={styles.author}>{username}</span>
           <span className={styles.handle}>@{username}</span>
           <span className={styles.dot}>·</span>
-          <span className={styles.time}>{timeAgo(tweet.createdAt)}</span>
+          <span className={styles.time}>{timeAgo(tweet?.createdAt)}</span>
         </div>
-        <p className={styles.tweetContent}>{renderContent(tweet.content)}</p>
+        <p className={styles.tweetContent}>{renderContent(tweet?.content)}</p>
         <div className={styles.tweetActions}>
           <button className={styles.actionBtn} onClick={handleLike}>
             <FontAwesomeIcon

@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
-import { getTweets } from '../../services/tweets';
+import { getTweets, getTrends } from '../../services/tweets';
 import NewTweet from '../sections/NewTweet';
 import Tweet from '../sections/tweet';
+import Trend from '../sections/trend';
+import UserCard from '../sections/user';
 import styles from '../../styles/Home.module.css';
 
 function Home() {
@@ -12,6 +14,7 @@ function Home() {
   const username = useSelector((state) => state.user.username);
 
   const [tweets, setTweets] = useState([]);
+  const [trends, setTrends] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -28,13 +31,26 @@ function Home() {
       })
       .finally(() => setLoading(false));
   }, [token]);
+  
+  useEffect(() => {
+    if (!token) return;
+    getTrends(token)
+      .then((data) => {console.log(data);
+        if (data.result) setTrends(data.trends);
+      })
+      .finally(() => setLoading(false));
+  }, [token]);
 
   if (!token) {
     return null;
   }
 
   const handleCreated = (tweet) => {
-    setTweets((prev) => [tweet, ...prev]);
+    const withAuthor = {
+      ...tweet,
+      author: tweet.author?.username ? tweet.author : { username },
+    };
+    setTweets((prev) => [withAuthor, ...prev]);
   };
 
   const handleDeleted = (id) => {
@@ -43,28 +59,48 @@ function Home() {
 
   return (
     <div className={styles.layout}>
-      <aside className={styles.sidebarLeft} />
+      <aside className={styles.sidebarLeft}>
+        <UserCard />
+      </aside>
 
       <main className={styles.feed}>
-        <h1 className={styles.feedTitle}>Home</h1>
-        <NewTweet onCreated={handleCreated} />
-        {loading ? (
-          <p className={styles.muted}>Loading...</p>
-        ) : (
-          tweets.map((tweet) => (
-            <Tweet
-              key={tweet._id}
-              tweet={tweet}
-              currentUsername={username}
-              token={token}
-              onDeleted={handleDeleted}
-            />
-          ))
-        )}
+        <div className={styles.feedHeader}>
+          <h1 className={styles.feedTitle}>Home</h1>
+          <NewTweet onCreated={handleCreated} />
+        </div>
+        <div className={styles.tweetList}>
+          {loading ? (
+            <p className={styles.muted}>Loading...</p>
+          ) : (
+            tweets.map((tweet) => (
+              <Tweet
+                key={tweet._id}
+                tweet={tweet}
+                currentUsername={username}
+                token={token}
+                onDeleted={handleDeleted}
+              />
+            ))
+          )}
+        </div>
       </main>
 
       <aside className={styles.sidebarRight}>
         <h2 className={styles.trendsTitle}>Trends</h2>
+        <div className={styles.trendsList}>
+          {loading ? (
+            <p className={styles.muted}>Loading...</p>
+          ) : (
+            trends.map((trend) => (
+              <Trend
+                key={trend._id}
+                trend={trend}
+                token={token}
+                
+              />
+            ))
+          )}
+        </div>
       </aside>
     </div>
   );
