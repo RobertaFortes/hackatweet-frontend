@@ -71,6 +71,33 @@
 .trendsTitle {
   font-size: 22px;
   margin: 0 0 20px;
+  cursor: pointer;
+}
+.trendsList {
+  background-color: #1b2735;
+  border-radius: 16px;
+  padding: 10px 0;
+}
+
+.trend {
+  padding: 14px 20px;
+  cursor: pointer;
+  transition: background .2s;
+}
+
+.trend:hover {
+  background-color: rgba(255,255,255,0.05);
+}
+
+.trendName{
+  font-size:15px;
+  font-weight:700;
+  margin:0;
+}
+
+.trendCount{
+  color:#8899a6;
+  font-size:13px;
 }
 
 .muted {

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
-import { getTweets, getTrends } from '../../services/tweets';
+import { getTweets, getTrends, getTweetsByHashtag  } from '../../services/tweets';
 import NewTweet from '../sections/NewTweet';
 import Tweet from '../sections/tweet';
 import Trend from '../sections/trend';
@@ -57,6 +57,23 @@ function Home() {
     setTweets((prev) => prev.filter((t) => t._id !== id));
   };
 
+  const handleTrendClick = (tag) => {
+    getTweetsByHashtag(token, tag)
+      .then(data => {
+        if (data.result) {
+          setTweets(data.tweets);
+        }
+      });
+  };
+    const loadTweets = () => {
+    getTweets(token, "")
+      .then(data => {
+        if (data.result) {
+          setTweets(data.tweets);
+        }
+      });
+  };
+
   return (
     <div className={styles.layout}>
       <aside className={styles.sidebarLeft}>
@@ -86,7 +103,7 @@ function Home() {
       </main>
 
       <aside className={styles.sidebarRight}>
-        <h2 className={styles.trendsTitle}>Trends</h2>
+        <h2 className={styles.trendsTitle} onClick={loadTweets}>Trends</h2>
         <div className={styles.trendsList}>
           {loading ? (
             <p className={styles.muted}>Loading...</p>
@@ -96,7 +113,7 @@ function Home() {
                 key={trend._id}
                 trend={trend}
                 token={token}
-                
+                onClick={handleTrendClick}
               />
             ))
           )}

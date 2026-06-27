@@ -38,3 +38,12 @@ export function getTrends(token) {
     headers: authHeaders(token),
   }).then((response) => response.json());
 }
+
+export function getTweetsByHashtag(token, tag) {
+  return fetch(
+    `${API_URL}/api/tweets/hashtag/${tag}`,
+    {
+      headers: authHeaders(token),
+    }
+  ).then(res => res.json());
+}
